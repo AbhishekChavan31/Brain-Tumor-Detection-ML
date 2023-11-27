@@ -2,6 +2,7 @@ import streamlit as st
 import pickle
 import mahotas
 
+
 rf = pickle.load(open("./Machine_Learning/rf.pkl", "rb"))
 gbm = pickle.load(open("./Machine_Learning/gbm.pkl", "rb"))
 xgb = pickle.load(open("./Machine_Learning/xgb.pkl", "rb"))
@@ -29,6 +30,13 @@ print(choosen_model)
 model = models[model_names.index(choosen_model)][0]
 
 st.subheader("Upload the MRI image of brain.")
+st.markdown(
+    """<p>
+                <span style="color:red">*</span>
+                Only upload MRI images. Not your face.
+                </p>""",
+    unsafe_allow_html=True,
+)
 
 try:
     # deg = st.text_input('', 0,100)
@@ -43,17 +51,38 @@ try:
     # print(actual_img.__len__())
     print(actual_img.shape)
 
-    st.subheader("Predicted Result")
+    st.markdown(
+        """
+            <h4>
+                <hr>
+                Predicted Result
+            </h4>
+        """,
+        unsafe_allow_html=True,
+    )
     result = None
 
-    st.subheader(f"Based on the {choosen_model[3:]}, your results are as follows")
+    st.markdown(
+        f'<h5>Based on the "{choosen_model[3:]}", your results are as follows. </h5>',
+        unsafe_allow_html=True,
+    )
     if int(model.predict(actual_img)):
-        result = "It seems your results are POSITIVE and you have BRAIN TUMOR. Allah will help you."
+        st.markdown(
+            '<h5 style="color:red">TUMOR DETECTED<br><p>It seems your results are POSITIVE and you have BRAIN TUMOR. Allah will help you.</p></h5>',
+            unsafe_allow_html=True,
+        )
         # result = "It seems you have BRAIN TUMOR"
     else:
-        result = "You are safe. Jesus loves you. Always"
+        st.markdown(
+            '<h5 style="color:green">TUMOR NOT DETECTED<br><p>You are SAFE. Jesus loves you. Always!!</p><h5>',
+            unsafe_allow_html=True,
+        )
 
-    st.text(result)
+    count = 0
+    for model, model_name in models:
+        count += int(model.predict(actual_img))
+    st.markdown(f"<p>Average Probability of brain tumor based on above models is <span style=\"color:magenta; font-weight: Bold;\">{round(count/4, 2)*100}%</span></p>", unsafe_allow_html=True)
+
 
 except Exception as e:
     st.text("Something is wrong. Try uploading the MRI image of brain.")
