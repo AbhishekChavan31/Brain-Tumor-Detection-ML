@@ -68,13 +68,13 @@ try:
     )
     if int(model.predict(actual_img)):
         st.markdown(
-            '<h5 style="color:red">TUMOR DETECTED<br><p>It seems your results are POSITIVE and you have BRAIN TUMOR. Allah will help you.</p></h5>',
+            '<h5 style="color:red">TUMOR DETECTED<br><p>It seems your results are POSITIVE and you have BRAIN TUMOR.</p></h5>',
             unsafe_allow_html=True,
         )
         # result = "It seems you have BRAIN TUMOR"
     else:
         st.markdown(
-            '<h5 style="color:green">TUMOR NOT DETECTED<br><p>You are SAFE. Jesus loves you. Always!!</p><h5>',
+            '<h5 style="color:green">TUMOR NOT DETECTED<br><p>You are SAFE.</p><h5>',
             unsafe_allow_html=True,
         )
 
