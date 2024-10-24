@@ -15,9 +15,8 @@ st.title("Brain Tumor Detection")
 # doing a select box to ask the user to choose a model
 models = [
     (rf, "1. Random Forest"),
-    (gbm, "2. Gradient Boosting"),
-    (xgb, "3. Xtreme Gradient Boosting (XgBoost)"),
-    (svm, "4. Support Vector Machine"),
+    (xgb, "2. Xtreme Gradient Boosting (XgBoost)"),
+    (svm, "3. Support Vector Machine"),
 ]
 model_names = list(map(lambda t: t[1], models))
 
