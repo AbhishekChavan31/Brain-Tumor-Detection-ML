@@ -4,7 +4,6 @@ import mahotas
 
 
 rf = pickle.load(open("./Machine_Learning/rf.pkl", "rb"))
-# gbm = pickle.load(open("./Machine_Learning/gbm.pkl", "rb"))
 xgb = pickle.load(open("./Machine_Learning/xgb.pkl", "rb"))
 svm = pickle.load(open("./Machine_Learning/svm.pkl", "rb"))
 
